@@ -1,23 +1,75 @@
 import React, { useState } from "react";
+import { Form, FormGroup } from "reactstrap";
 
 function SignUp() {
+  const [prenom, setPrenom] = useState("");
+  const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
+    console.log(prenom, nom, email, password);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>{email}</h1>
-      <input
-        type="email"
-        name="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    <Form onSubmit={handleSubmit}>
+      <h1>
+        {prenom}
+        <br />
+        {nom}
+        <br />
+        {email}
+        <br />
+        {password}
+      </h1>
+      <FormGroup>
+        <input
+          name="prenom"
+          type="text"
+          value={prenom}
+          placeholder="Votre prénom"
+          onChange={(e) => setPrenom(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <input
+          name="nom"
+          value={nom}
+          type="text"
+          placeholder="Votre nom de famille"
+          onChange={(e) => setNom(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <input
+          type="email"
+          name="email"
+          placeholder="Votre e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <input
+          name="password"
+          value={password}
+          placeholder="Votre mot de passe"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <input
+          name="password"
+          value={password}
+          placeholder="Vérification mot de passe"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormGroup>
       <input type="submit" value="Envoyer" />
-    </form>
+    </Form>
   );
 }
 
