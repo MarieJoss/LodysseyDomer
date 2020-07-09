@@ -1,0 +1,13 @@
+.button {
+  background-color: lightcoral !important;
+  color: white !important;
+  border-radius: 1000px;
+  border: 0;
+  padding: 10px 20px !important;
+  margin-top: 7% !important;
+  font-size: 15px !important;
+}
+
+.marginInput {
+  margin: 4%;
+}
