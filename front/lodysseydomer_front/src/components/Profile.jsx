@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Grid,
-  Paper,
-  Link,
-} from "@material-ui/core";
+import { List, ListItem, ListItemText, Grid, Paper } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+
+import styles from "./sign.module.css";
 
 const Profile = () => {
   const [infosUser, SetInfosUser] = useState([]);
@@ -41,7 +38,16 @@ const Profile = () => {
                     secondary="mon nom de famille"
                   />
                 </ListItem>
-                <Link to="/signin">Déconnexion</Link>
+                <Link to="/">
+                  <Button
+                    variant="contained"
+                    size="medium"
+                    type="submit"
+                    className={styles.lien}
+                  >
+                    Déconnexion
+                  </Button>
+                </Link>
               </List>
             </Grid>
           </Grid>
