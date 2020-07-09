@@ -6,6 +6,7 @@ function SignUp() {
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [verifPassword, setVerifPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,10 +63,10 @@ function SignUp() {
       <FormGroup>
         <input
           name="password"
-          value={password}
+          value={verifPassword}
           placeholder="Vérification mot de passe"
           type="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setVerifPassword(e.target.value)}
         />
       </FormGroup>
       <input type="submit" value="Envoyer" />
