@@ -1,3 +1,4 @@
+require("dotenv").config();
 // je déclare l'ensemble des librairies nécessaires
 const http = require("http");
 const path = require("path");
@@ -5,29 +6,34 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
+const sequelize = require("./sequelize");
+const PORT = process.env.PORT || 8080;
 
 const authRouter = require("./routes/auth/auth");
 
-app.use("/auth", authRouter);
-
 // je configure l'application
 app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
-// j'implémente la partie API
-app.get("/", (req, res) => {
-  res.send("youhou");
-});
-/// dans le cas d'une route non trouvée, je retourne le code 404 'Not Found'
-app.use(function (req, res, next) {
-  var err = new Error("Not Found");
-  err.status = 404;
-  next(err);
-});
+app.use("/auth", authRouter);
 
-//je lance le serveur node
-let server = app.listen(process.env.PORT || 3000, function () {
-  console.log("Listening on port " + server.address().port);
+app.get("/", (req, res) => {
+  res.status(200).send("Welcome");
 });
+sequelize
+  .sync({ force: true })
+  .then(() => {
+    return sequelize.authenticate();
+  })
+  .then(() => {
+    app.listen(PORT, (err) => {
+      if (err) {
+        console.log(err.message);
+      }
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("unable to join database", err.message);
+  });

@@ -9,8 +9,11 @@
   },
   "author": "wilder",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.0"
   }
 }
