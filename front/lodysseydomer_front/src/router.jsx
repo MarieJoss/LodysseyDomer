@@ -10,9 +10,8 @@ const Router = () => {
     <BrowserRouter>
       <Navbar />
       <Switch>
-        <Route path="/" component={SignIn} />
+        <Route exact path="/" component={SignIn} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/signin" component={SignIn} />
         <Route path="/profile" component={Profile} />
       </Switch>
     </BrowserRouter>
