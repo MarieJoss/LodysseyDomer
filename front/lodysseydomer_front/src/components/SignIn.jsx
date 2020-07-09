@@ -6,7 +6,8 @@ import Button from "@material-ui/core/Button";
 
 import Axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, TextField, Paper, Link } from "@material-ui/core";
+import { Grid, TextField, Paper } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -17,20 +18,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignUp() {
-  const [name, setPrenom] = useState("");
-  const [lastname, setNom] = useState("");
+function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await Axios.post("http://localhost:5000/auth/signup", {
+      await Axios.post("http://localhost:5000/auth/signin", {
         email,
         password,
-        name,
-        lastname,
       });
       console.log("utilisateur est bien crée");
     } catch (err) {
@@ -60,33 +57,8 @@ function SignUp() {
           >
             <Grid container alignItems="center" justify="center">
               <Grid item xs={12} alignContent="center">
-                <h1>Inscription</h1>
+                <h1>Connection</h1>
                 <Form onSubmit={handleSubmit}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                      <TextField
-                        name="prenom"
-                        type="text"
-                        value={name}
-                        onChange={(e) => setPrenom(e.target.value)}
-                        id="outlined-basic"
-                        label="Prénom"
-                        variant="outlined"
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <TextField
-                        name="nom"
-                        value={lastname}
-                        type="text"
-                        placeholder="Votre nom de famille"
-                        onChange={(e) => setNom(e.target.value)}
-                        id="outlined-basic"
-                        label="Nom"
-                        variant="outlined"
-                      />
-                    </Grid>
-                  </Grid>
                   <Grid container spacing={3}>
                     <Grid item xs={6}>
                       <TextField
@@ -113,22 +85,24 @@ function SignUp() {
                       />
                     </Grid>
                   </Grid>
-                  <Button
-                    variant="contained"
-                    size="medium"
-                    type="submit"
-                    className={styles.button}
-                  >
-                    S'INSCRIRE
-                  </Button>
-                  <Link to="/signin">
+                  <Link to="/profile">
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      type="submit"
+                      className={styles.button}
+                    >
+                      SE CONNECTER
+                    </Button>
+                  </Link>
+                  <Link to="/signup">
                     <Button
                       variant="contained"
                       size="medium"
                       type="submit"
                       className={styles.lien}
                     >
-                      Se connecter
+                      Je n'ai pas de compte
                     </Button>
                   </Link>
                 </Form>
@@ -141,4 +115,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;
