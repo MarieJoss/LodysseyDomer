@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import { Form, FormGroup } from "reactstrap";
 
+import Axios from "axios";
+
 function SignUp() {
-  const [prenom, setPrenom] = useState("");
-  const [nom, setNom] = useState("");
+  const [name, setPrenom] = useState("");
+  const [lastname, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verifPassword, setVerifPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(prenom, nom, email, password);
+    try {
+      await Axios.post("http://localhost:5000/auth/signup", {
+        email,
+        password,
+        name,
+        lastname,
+      });
+      console.log("utilisateur est bien crée");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <h1>
-        {prenom}
+        {name}
         <br />
-        {nom}
+        {lastname}
         <br />
         {email}
         <br />
@@ -28,7 +40,7 @@ function SignUp() {
         <input
           name="prenom"
           type="text"
-          value={prenom}
+          value={name}
           placeholder="Votre prénom"
           onChange={(e) => setPrenom(e.target.value)}
         />
@@ -36,7 +48,7 @@ function SignUp() {
       <FormGroup>
         <input
           name="nom"
-          value={nom}
+          value={lastname}
           type="text"
           placeholder="Votre nom de famille"
           onChange={(e) => setNom(e.target.value)}

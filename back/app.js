@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
 const sequelize = require("./sequelize");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 const authRouter = require("./routes/auth/auth");
 
