@@ -2,15 +2,29 @@
 GET http://localhost:5000 HTTP/1.1
 
 ###
-GET http://localhost:5000/auth/signup HTTP/1.1
+
+GET http://localhost:5000/users/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1vbkBlbWwuY29tIiwiaWF0IjoxNTk0MzgxMDY4LCJleHAiOjE1OTQ0Njc0Njh9.Q7E84uM4q9GRh3cFhkelqaUq0yFgbBJjoZ6MSCBIMAw
 
 ###
 POST http://localhost:5000/auth/signup HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "mon@email.com",
+    "email": "mon@eml.com",
     "password": "monPassw0rd",
     "name": "James",
     "lastname": "Bond"
 }
+
+###
+
+POST http://localhost:5000/auth/signin HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "mon@eml.com",
+    "password": "monPassw0rd"
+
+}
+
