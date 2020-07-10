@@ -3,13 +3,13 @@ require("dotenv").config();
 const http = require("http");
 const path = require("path");
 const express = require("express");
-const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
 const sequelize = require("./sequelize");
 const PORT = process.env.PORT || 5000;
 
 const authRouter = require("./routes/auth/auth");
+const users = require("./routes/users");
 
 // je configure l'application
 app.use(morgan("dev"));
@@ -17,12 +17,13 @@ app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
 app.use("/auth", authRouter);
+app.use("/users", users);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome");
 });
 sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => {
     return sequelize.authenticate();
   })
